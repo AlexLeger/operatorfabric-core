@@ -155,3 +155,5 @@ services:
     - REGISTRY_HOST=registry
     - REGISTRY_PORT=8080
     - DEPENDS_ON=CONFIG
+    volumes:
+      - "../../../../services/web/web-ui/src/main/docker/volume/web-ui-storage/sounds:/web-ui-storage/sounds"

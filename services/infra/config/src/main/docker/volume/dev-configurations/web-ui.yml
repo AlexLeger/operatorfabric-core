@@ -79,3 +79,6 @@ operatorfabric:
           version: 0.1.2-RELEASE
   time:
     pulse: 5000
+  sounds:
+    storage:
+      path: "./services/web/web-ui/build/docker-volume/web-ui-storage/sounds"

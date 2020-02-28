@@ -12,6 +12,7 @@ subprojects {
         compile boot.starterWeb, boot.starterJetty
         compile cloud.eurekaClient
         compile boot.starterAop, spring.retry
+        compile misc.guava
     }
     
     sourceSets {
