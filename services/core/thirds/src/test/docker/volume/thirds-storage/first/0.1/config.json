@@ -9,14 +9,6 @@
   "csses": [
     "style1"
   ],
-  "medias": {
-    "bidon": {
-      "name": "bidon",
-      "files": [
-        "bidon.txt"
-      ]
-    }
-  },
   "locales": [
     "fr",
     "en"

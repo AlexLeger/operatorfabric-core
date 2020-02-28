@@ -58,8 +58,6 @@ public class ArchivedCardConsultationData implements Card {
     @Indexed
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Instant endDate;
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String media;
     private SeverityEnum severity;
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @Singular
