@@ -34,8 +34,7 @@ export class TimeFilterComponent implements OnInit, OnDestroy {
 
     timeFilterForm: FormGroup;
 
-    constructor(private store: Store<AppState>,
-                private timeService: TimeService) {
+    constructor(private store: Store<AppState>, private timeService: TimeService) {
         this.timeFilterForm = this.createFormGroup();
     }
 
@@ -43,13 +42,20 @@ export class TimeFilterComponent implements OnInit, OnDestroy {
         this.ngUnsubscribe$.next();
         this.ngUnsubscribe$.complete();
     }
-
     ngOnInit() {
+        
         this._filter$ = this.store.select(buildFilterSelector(FilterType.TIME_FILTER));
-
+        console.log('ngOnInit called...');
         //Update the values of the filter form if the state of the filter has been changed by other means (timeline, followClockTick, etc.)
         //With {emitEvent:false}, this update won't trigger a valueChanges, so no ApplyFilter action will be dispatched
         this._filter$.pipe(takeUntil(this.ngUnsubscribe$)).subscribe((next: Filter) => {
+            console.log('ngOnInit called...');
+            console.log(this.timeFilterForm);
+
+            // debugger;
+            this.timeFilterForm.get('start').setValue('2020-03-03:12:00.000');
+
+
             if (next) {
                 if (this.timeService.parseString(this.timeFilterForm.get('start').value).valueOf() != next.status.start) {
                     if(!!next.status.start)
@@ -93,7 +99,6 @@ export class TimeFilterComponent implements OnInit, OnDestroy {
                 );
         });
     }
-
     private createFormGroup() {
         return new FormGroup({
             start: new FormControl(),
