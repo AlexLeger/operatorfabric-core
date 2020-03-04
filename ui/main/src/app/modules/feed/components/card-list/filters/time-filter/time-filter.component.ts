@@ -51,6 +51,7 @@ export class TimeFilterComponent implements OnInit, OnDestroy {
         //With {emitEvent:false}, this update won't trigger a valueChanges, so no ApplyFilter action will be dispatched
         this._filter$.pipe(takeUntil(this.ngUnsubscribe$)).subscribe((next: Filter) => {
             if (next) {
+                console.log(new Date().toISOString(),"FILTER_BUG ngOnInit() , filter value change in store ", next.status);
                 if (this.timeService.parseString(this.timeFilterForm.get('start').value).valueOf() != next.status.start) {
                     if(!!next.status.start)
                         this.timeFilterForm.get('start').setValue(this.timeService.asInputString(next.status.start), {emitEvent:false});
@@ -73,11 +74,13 @@ export class TimeFilterComponent implements OnInit, OnDestroy {
         });
 
         this._filter$.pipe(first(), takeUntil(this.ngUnsubscribe$)).subscribe(() => {
+            console.log(new Date().toISOString(),"FILTER_BUG ngOnInit() , first ");
             this.timeFilterForm
                 .valueChanges
                 .pipe(
                     takeUntil(this.ngUnsubscribe$),
                     distinctUntilChanged((formA, formB) => {
+                        console.log(new Date().toISOString(),"FILTER_BUG ngOnInit() distinctUntilChanged() formA= ", formA,",formB=",formB);
                         return _.isEqual(formA, formB);
                     }),
                     debounce(() => timer(500)))

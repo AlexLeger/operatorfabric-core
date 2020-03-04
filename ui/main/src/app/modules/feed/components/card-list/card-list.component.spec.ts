@@ -20,7 +20,7 @@ import {appReducer, AppState, storeConfig} from "@ofStore/index";
 import {FilterService} from "@ofServices/filter.service";
 import {InitFilters} from "@ofActions/feed.actions";
 
-describe('CardListComponent', () => {
+fdescribe('CardListComponent', () => {
     let component: CardListComponent;
     let fixture: ComponentFixture<CardListComponent>;
     let filterService: FilterService;

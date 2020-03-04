@@ -72,6 +72,7 @@ export function reducer(
         }
 
         case FeedActionTypes.ApplyFilter: {
+            console.log(new Date().toISOString(),"FILTER_BUG case FeedActionTypes.ApplyFilter filtername=",action.payload.name);
             if(state.filters.get(action.payload.name)) {
                 const filters = new Map(state.filters);
                 const filter = filters.get(action.payload.name).clone();
