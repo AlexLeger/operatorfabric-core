@@ -79,6 +79,8 @@ ext {
     generator = [
             swagger                 : "io.swagger:swagger-codegen-cli:${versions['swagger']}",
             swaggerGeneratorPlugin  : "gradle.plugin.org.hidetake:gradle-swagger-generator-plugin:${versions['swagger.generator.plugin']}",
+            swaggerUI               : "org.webjars:swagger-ui:${versions['swaggerUI']}",
+            //TODO Is springFox still used? What for?
             springfoxSwagger2       : "io.springfox:springfox-swagger2:${versions['springfox']}",
             springfoxSwaggerUI      : "io.springfox:springfox-swagger-ui:${versions['springfox']}"
     ]
@@ -106,11 +108,11 @@ licenseReport {
 
 asciidoctor {
     sources {
-        include 'architecture/index.adoc','start/index.adoc','user_guide/index.adoc','developer_guide/index.adoc', 'release_notes/index.adoc'
+        include '*/index.adoc','release_notes.adoc','single_page_doc.adoc'
     }
     resources {
         from('src/docs/asciidoc') {
-            include 'architecture/images/**/*', 'start/images/*', 'user_guide/images/*','developer_guide/images/*', 'release_notes/images/*'
+            include 'images/*'
         }
     }
     attributes nofooter : ''
@@ -177,24 +179,6 @@ subprojects {
             options.noTimestamp()
         }
 
-        asciidoctor {
-            sources {
-                include 'index.adoc'
-            }
-            resources {
-                from('src/docs/asciidoc') {
-                    include 'images/**/*'
-                }
-            }
-            attributes nofooter : ''
-        }
-        asciidoctor.doLast {
-            copy {
-                from "$buildDir/asciidoc/html5"
-                into "$buildDir/docs/reference"
-                include '*'
-            }
-        }
     }
 }
 
