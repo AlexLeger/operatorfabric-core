@@ -17,7 +17,8 @@ file("versions.properties").withReader { reader ->
 ext {
     operatorfabric = [
             group: "org.lfenergy.operatorfabric",
-            version: version = rootProject.file('VERSION').text.trim()
+            version: version = rootProject.file('VERSION').text.trim(),
+            revisionDate: revisionDate = new Date().format('dd MMMM yyyy')
     ]
 
     boot = [
@@ -107,6 +108,7 @@ licenseReport {
 }
 
 asciidoctor {
+
     sources {
         include '*/index.adoc','release_notes.adoc','single_page_doc.adoc'
     }
@@ -115,17 +117,15 @@ asciidoctor {
             include 'images/*'
         }
     }
-    attributes nofooter : ''
-    
+    attributes  nofooter            : '',
+                revnumber           : operatorfabric.version,
+                revdate             : operatorfabric.revisionDate,
+                sectnums            : '',
+                toc                 : 'left',
+                toclevels           : '3',
+                icons               : 'font',
+                "hide-uri-scheme"   : ''
 }
-
-//asciidoctor.doLast {
-//    copy {
-//        from "src/docs/asciidoc/architecture/images"
-//        into "build/asciidoc/html5/architecture/images"
-//        include '**/*'
-//    }
-//}
 
 subprojects {
 
