@@ -42,6 +42,7 @@ done
 
 # Copy asciidoctor documentation (only release notes and single_file_doc)
 mkdir -p $HOME/site/documentation/archives/$OF_VERSION/
+mkdir -p $HOME/site/documentation/archives/$OF_VERSION/images/
 cp $OF_HOME/build/asciidoc/html5/release_notes.html $HOME/site/documentation/archives/$OF_VERSION/
 cp $OF_HOME/build/asciidoc/html5/single_page_doc.html $HOME/site/documentation/archives/$OF_VERSION/
 cp -r $OF_HOME/build/asciidoc/html5/images/* $HOME/site/documentation/archives/$OF_VERSION/images/
